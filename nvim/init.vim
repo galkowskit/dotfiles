@@ -5,12 +5,16 @@ Plug 'takac/vim-hardtime'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
 " Basic settings
 let mapleader = ','
 syntax on
+let g:gruvbox_italic=1
+colorscheme gruvbox
 set encoding=utf-8
 set expandtab
 set shiftwidth=4
