@@ -1,31 +1,30 @@
 call plug#begin('~/local/share/nvim/plugged')
+Plug 'tpope/vim-surround'
+call plug#end()
+
+if !exists('g:vscode')
+call plug#begin('~/local/share/nvim/plugged')
 
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'takac/vim-hardtime'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'preservim/nerdtree'
-Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
+Plug 'arzg/vim-colors-xcode'
+Plug 'peitalin/vim-jsx-typescript'
 
 call plug#end()
 
 " Basic settings
 let mapleader = ','
-syntax on
-let g:gruvbox_italic=1
-colorscheme gruvbox
 set encoding=utf-8
+syntax on
 set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set number relativenumber
 set termguicolors
-
-" Plugin setup
-" - Hardtime
-let g:hardtime_default_on = 0
+colorscheme xcodedark
 
 " - coc
 " use <tab> for trigger completion and navigate to next complete item
@@ -144,6 +143,17 @@ nmap <silent> <leader>dj <Plug>(coc-implementation)
 nmap <silent> <leader>drn <Plug>(coc-rename)
 nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
 
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 " coc-prettier remap formatting
 vmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
@@ -152,3 +162,4 @@ nmap <leader>ff :CocCommand prettier.formatFile<CR>
 
 " - nerdtree
 map <C-n> :NERDTreeToggle<CR>
+endif
