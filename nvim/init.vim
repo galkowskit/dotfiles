@@ -24,6 +24,20 @@ set softtabstop=4
 set tabstop=4
 set number relativenumber
 set termguicolors
+
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+
+if has("patch-8.1.1564")
+    set signcolumn=number
+else 
+    set signcolumn=yes
+endif
+
 colorscheme xcodedark
 
 " - coc
@@ -38,7 +52,8 @@ inoremap <silent><expr> <TAB>
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
 
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" - coc - NeoVim status bar support.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_fuction','')}
 
 " close preview window when completion is done
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -137,13 +152,27 @@ function! s:denite_my_settings() abort
 endfunction
 
 " - coc
-nmap <silent> <leader>dd <Plug>(coc-definition)
-nmap <silent> <leader>dr <Plug>(coc-references)
-nmap <silent> <leader>dj <Plug>(coc-implementation)
-nmap <silent> <leader>drn <Plug>(coc-rename)
-nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
+" - coc - Go to x commands.
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gr <Plug>(coc-references)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gy <Plug>(coc-type-references)
 
-" Use K to show documentation in preview window.
+" - coc - Navigate through diagnostics.
+nmap <silent> [g <Plug>(coc-diagnostic-prev) 
+nmap <silent> ]g <Plug>(coc-diagnostic-next) 
+
+" - coc - Rename symbol.
+nmap <silent> <leader>rn <Plug>(coc-rename)
+
+" - coc - Bring up coc suggestions.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" - coc - Apply codeaction.
+xmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+
+" - coc - Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -154,11 +183,15 @@ function! s:show_documentation()
   endif
 endfunction
 
-" coc-prettier remap formatting
+" - coc - Prettier formatting.
 vmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
+command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+command! -nargs=0 OrganiseImports :call CocAction('runCommand', 'editor.action.organizeImport')
 
-nmap <leader>ff :CocCommand prettier.formatFile<CR>
+" - coc - Fix current. 
+nmap <leader>qf <Plug>(coc-fix-current)
 
 " - nerdtree
 map <C-n> :NERDTreeToggle<CR>
