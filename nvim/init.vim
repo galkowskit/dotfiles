@@ -11,6 +11,8 @@ Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'arzg/vim-colors-xcode'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'tpope/vim-surround'
+Plug 'aquach/vim-http-client'
 
 call plug#end()
 
