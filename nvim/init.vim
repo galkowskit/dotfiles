@@ -13,6 +13,7 @@ Plug 'arzg/vim-colors-xcode'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'tpope/vim-surround'
 Plug 'aquach/vim-http-client'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
