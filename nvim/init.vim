@@ -34,6 +34,7 @@ set nowritebackup
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
+set scrolloff=5
 
 if has("patch-8.1.1564")
     set signcolumn=number
