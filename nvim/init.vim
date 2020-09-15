@@ -8,6 +8,7 @@ call plug#begin('~/local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'editorconfig/editorconfig-vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
@@ -42,8 +43,8 @@ set scrolloff=5
 colorscheme xcodedarkhc
 
 " - fzf
-nnoremap <C-p> :GFiles<CR>
-nnoremap <C-f> :Rg 
+nnoremap <leader>p :GFiles<CR>
+nnoremap <C-f> :Rg
 
 " - coc
 " use <tab> for trigger completion and navigate to next complete item
