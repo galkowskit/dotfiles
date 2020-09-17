@@ -8,12 +8,14 @@ call plug#begin('~/local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'editorconfig/editorconfig-vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree' 
+
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'editorconfig/editorconfig-vim'
 
 Plug 'arzg/vim-colors-xcode'
 
