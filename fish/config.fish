@@ -6,5 +6,3 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 export FZF_DEFAULT_COMMAND='fd --type f'
-
-starship init fish | source
