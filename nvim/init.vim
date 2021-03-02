@@ -18,6 +18,7 @@ if !exists('g:vscode')
     Plug 'editorconfig/editorconfig-vim'
 
     Plug 'arzg/vim-colors-xcode'
+    Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
     call plug#end()
 
@@ -42,11 +43,14 @@ if !exists('g:vscode')
     set shortmess+=c
     set scrolloff=5
 
-    colorscheme xcodedarkhc
+    colorscheme onehalfdark
+    let g:airline_theme='onehalfdark'
     if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
-        colorscheme xcodedarkhc
+        colorscheme onehalfdark
+        let g:airline_theme='onehalfdark'
     else
-        colorscheme xcodelighthc
+        colorscheme onehalflight
+        let g:airline_theme='onehalflight'
     endif
 
     " - fzf
@@ -92,8 +96,8 @@ if !exists('g:vscode')
     inoremap <silent><expr> <c-space> coc#refresh()
 
     " - coc - Apply codeaction.
-    xmap <leader>a <Plug>(coc-codeaction-selected)
-    nmap <leader>a <Plug>(coc-codeaction-selected)
+    xmap <leader>a <Plug>(coc-codeaction-selected)<CR>
+    nmap <leader>a <Plug>(coc-codeaction-selected)<CR>
 
     " - coc - Use K to show documentation in preview window.
     nnoremap <silent> K :call <SID>show_documentation()<CR>
